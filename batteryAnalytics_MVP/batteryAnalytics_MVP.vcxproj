@@ -104,12 +104,12 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)\SFML-2.5.1\include;C:\Users\dell\source\repos\batteryAnalytics_MVP\batteryAnalytics_MVP\imgui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\SFML-2.5.1\include;C:\Users\dell\source\repos\HackthonHuawei\batteryAnalytics_MVP\imgui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(SolutionDir)/SFML-2.5.1/lib;C:\Users\dell\source\repos\batteryAnalytics_MVP\batteryAnalytics_MVP\imgui</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)/SFML-2.5.1/lib;C:\Users\dell\source\repos\HackthonHuawei\batteryAnalytics_MVP\imgui</AdditionalLibraryDirectories>
       <AdditionalDependencies>sfml-main-d.lib;sfml-graphics-d.lib;sfml-window-d.lib;sfml-system-d.lib;sfml-audio-d.lib;sfml-network-d.lib;opengl32.lib</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
