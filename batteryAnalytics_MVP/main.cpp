@@ -38,7 +38,7 @@ int main()
 		ImGui::SFML::Update(window, clock.restart());
 		//Start adding gui elements
 		ImGui::Begin("Location", nullptr, ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoResize);
-		
+
 
 		const char* items_states[] = { "SP", "TO", "GO" };
 
@@ -57,12 +57,14 @@ int main()
 		ImGui::SetCursorPos(ImVec2(ImGui::GetCursorPos().x + 0.1 * (WINDOW_WIDTH / 10.0f), ImGui::GetCursorPos().y));
 		ImGui::Combo("State", &current_state, items_states, IM_ARRAYSIZE(items_states));
 
-		switch (current_state){
+		ImGui::SetCursorPos(ImVec2(ImGui::GetCursorPos().x + 0.55 * (WINDOW_WIDTH / 10.0f), ImGui::GetCursorPos().y + 0.20 * (WINDOW_HEIGHT / 10.0f)));
+		ImGui::Text("City");
+		ImGui::SetCursorPos(ImVec2(ImGui::GetCursorPos().x + 0.1 * (WINDOW_WIDTH / 10.0f), ImGui::GetCursorPos().y));
+		ImGui::SetNextItemWidth(200);
+
+		switch (current_state) {
 		case 0: // SP
-			ImGui::SetCursorPos(ImVec2(ImGui::GetCursorPos().x + 0.55 * (WINDOW_WIDTH / 10.0f), ImGui::GetCursorPos().y + 0.20 * (WINDOW_HEIGHT / 10.0f)));
-			ImGui::Text("City");
-			ImGui::SetCursorPos(ImVec2(ImGui::GetCursorPos().x + 0.1 * (WINDOW_WIDTH / 10.0f), ImGui::GetCursorPos().y));
-			ImGui::SetNextItemWidth(200);
+
 			ImGui::Combo("City", &current_city, items_cities_SP, IM_ARRAYSIZE(items_cities_SP));
 			ImGui::SetCursorPos(ImVec2(ImGui::GetCursorPos().x + 1.6 * (WINDOW_WIDTH / 10.0f), ImGui::GetCursorPos().y - 1 * (WINDOW_HEIGHT / 10.0f)));
 			ImGui::Text("Power distribution \ncompany");
@@ -93,16 +95,22 @@ int main()
 				// do something for Adamantina in SP
 				ImGui::SetWindowFontScale(2.0);
 				ImGui::SetCursorPos(ImVec2(ImGui::GetCursorPos().x + 1.6 * (WINDOW_WIDTH / 10.0f), ImGui::GetCursorPos().y + 0.15 * (WINDOW_HEIGHT / 10.0f)));
-				ImGui::Text("ELEKTRO");
+				ImGui::Text("ESS");
 				ImGui::SetWindowFontScale(1.4);
 				break;
 			}
 			break;
 		case 1: // TO
 			ImGui::Combo("City", &current_city, items_cities_TO, IM_ARRAYSIZE(items_cities_TO));
+			ImGui::SetCursorPos(ImVec2(ImGui::GetCursorPos().x + 1.6 * (WINDOW_WIDTH / 10.0f), ImGui::GetCursorPos().y - 1 * (WINDOW_HEIGHT / 10.0f)));
+			ImGui::Text("Power distribution \ncompany");
 			switch (current_city) {
 			case 0: // Palmas
 				// do something for Palmas in TO
+				ImGui::SetWindowFontScale(2.0);
+				ImGui::SetCursorPos(ImVec2(ImGui::GetCursorPos().x + 1.6 * (WINDOW_WIDTH / 10.0f), ImGui::GetCursorPos().y + 0.15 * (WINDOW_HEIGHT / 10.0f)));
+				ImGui::Text("ETO");
+				ImGui::SetWindowFontScale(1.4);
 				break;
 			case 1: // Gurupi
 				// do something for Gurupi in TO
@@ -114,6 +122,8 @@ int main()
 			break;
 		case 2: // GO
 			ImGui::Combo("City", &current_city, items_cities_GO, IM_ARRAYSIZE(items_cities_GO));
+			ImGui::SetCursorPos(ImVec2(ImGui::GetCursorPos().x + 1.6 * (WINDOW_WIDTH / 10.0f), ImGui::GetCursorPos().y - 1 * (WINDOW_HEIGHT / 10.0f)));
+			ImGui::Text("Power distribution \ncompany");
 			switch (current_city) {
 			case 0: // Goiania
 				// do something for Goiania in GO
