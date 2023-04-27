@@ -27,14 +27,6 @@ int main()
 				window.close();
 
 		}
-		// Configure text
-		sf::Font font;
-		if (!font.loadFromFile("./assets/Garet-Heavy.ttf"))
-		{
-			// handle font loading error
-			return -1;
-		}
-
 		ImGui::SFML::Update(window, clock.restart());
 		//Start adding gui elements
 		ImGui::Begin("Location", nullptr, ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoCollapse);
