@@ -45,11 +45,11 @@ int main()
 		ImGui::Begin("TUSD Fio B based on Location", nullptr, ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoCollapse);
 
 
-		const char* items_states[] = { "SP", "TO", "GO" };
+		const char* items_states[] = { "SP", "TO","RJ"};
 
-		const char* items_cities_SP[] = { "Sao Paulo", "Rio Claro", "Campos de Jordao","Adamantina" };
-		const char* items_cities_TO[] = { "Palmas", "Gurupi", "Porto Nacional" };
-		const char* items_cities_GO[] = { "Goiania", "Anapolis", "Catalao" };
+		const char* items_cities_SP[] = { "Sao Paulo", "Rio Claro", "Campos de Jordao","Adamantina","Itapecerica da Serra"};
+		const char* items_cities_TO[] = { "Palmas" };
+		const char* items_cities_RJ[] = { "Araruama","Cachoeiras de Macacu"};
 		const float pos_power_textX = 3.0f;
 		const float pos_power_textY = 0.1f;
 		const float pos_fio_textX = 3.0f;
@@ -58,6 +58,7 @@ int main()
 		const float pos_input_textY = 0.5f;
 
 
+		static float fiob = 0.0f;
 		static int current_state = 0;
 		static int current_city = 0;
 		ImGui::SetWindowFontScale(1.0);
@@ -89,6 +90,7 @@ int main()
 				ImGui::SetWindowFontScale(1.0);
 				ImGui::SetCursorPos(ImVec2(ImGui::GetCursorPos().x + pos_fio_textX * (WINDOW_WIDTH / 10.0f), ImGui::GetCursorPos().y + pos_fio_textY * (WINDOW_HEIGHT / 10.0f)));
 				ImGui::Text("TUSD FIO B --> 211,34 R$/MWh ");
+				fiob = 211.34f;
 				break;
 			case 1: // Rio Claro
 				// do something for Rio Claro in SP
@@ -96,8 +98,9 @@ int main()
 				ImGui::SetCursorPos(ImVec2(ImGui::GetCursorPos().x + pos_power_textX * (WINDOW_WIDTH / 10.0f), ImGui::GetCursorPos().y + pos_power_textY * (WINDOW_HEIGHT / 10.0f)));
 				ImGui::Text("ELEKTRO");
 				ImGui::SetWindowFontScale(1.0);
-				ImGui::SetCursorPos(ImVec2(ImGui::GetCursorPos().x + 2.0f * (WINDOW_WIDTH / 10.0f), ImGui::GetCursorPos().y + pos_fio_textY * (WINDOW_HEIGHT / 10.0f)));
+				ImGui::SetCursorPos(ImVec2(ImGui::GetCursorPos().x + pos_fio_textX * (WINDOW_WIDTH / 10.0f), ImGui::GetCursorPos().y + pos_fio_textY * (WINDOW_HEIGHT / 10.0f)));
 				ImGui::Text("TUSD FIO B --> 195,62 R$/MWh");
+				fiob = 195.62f;
 				break;
 			case 2: // Campos de Jordao
 				// do something for Campos de Jordao in SP
@@ -107,6 +110,7 @@ int main()
 				ImGui::SetWindowFontScale(1.0);
 				ImGui::SetCursorPos(ImVec2(ImGui::GetCursorPos().x + pos_fio_textX * (WINDOW_WIDTH / 10.0f), ImGui::GetCursorPos().y + pos_fio_textY * (WINDOW_HEIGHT / 10.0f)));
 				ImGui::Text("TUSD FIO B --> 195,62 R$/MWh");
+				fiob = 195.62f;
 
 				break;
 			case 3: // Adamantina
@@ -117,6 +121,17 @@ int main()
 				ImGui::SetWindowFontScale(1.0);
 				ImGui::SetCursorPos(ImVec2(ImGui::GetCursorPos().x + pos_fio_textX * (WINDOW_WIDTH / 10.0f), ImGui::GetCursorPos().y + pos_fio_textY * (WINDOW_HEIGHT / 10.0f)));
 				ImGui::Text("TUSD FIO B --> 104,23 R$/MWh");
+				fiob = 104.23f;
+				break;
+
+			case 4 : //Itapecerica da Serra
+				ImGui::SetWindowFontScale(2.0);
+				ImGui::SetCursorPos(ImVec2(ImGui::GetCursorPos().x + pos_power_textX * (WINDOW_WIDTH / 10.0f), ImGui::GetCursorPos().y + pos_power_textY * (WINDOW_HEIGHT / 10.0f)));
+				ImGui::Text("CERES");
+				ImGui::SetWindowFontScale(1.0);
+				ImGui::SetCursorPos(ImVec2(ImGui::GetCursorPos().x + pos_fio_textX * (WINDOW_WIDTH / 10.0f), ImGui::GetCursorPos().y + pos_fio_textY * (WINDOW_HEIGHT / 10.0f)));
+				ImGui::Text("TUSD FIO B --> 491,10 R$/MWh");
+				fiob = 491.10f;
 				break;
 			}
 			break;
@@ -133,44 +148,47 @@ int main()
 				ImGui::SetWindowFontScale(1.0);
 				ImGui::SetCursorPos(ImVec2(ImGui::GetCursorPos().x + pos_fio_textX * (WINDOW_WIDTH / 10.0f), ImGui::GetCursorPos().y + pos_fio_textY * (WINDOW_HEIGHT / 10.0f)));
 				ImGui::Text("TUSD FIO B --> 361,44 R$/MWh");
+				fiob = 361.44f;
 				break;
-			case 1: // Gurupi
-				// do something for Gurupi in TO
-				break;
-			case 2: // Porto Nacional
-				// do something for Porto Nacional in TO
-				break;
+
 			}
 			break;
-		case 2: // GO
-			ImGui::Combo(" City", &current_city, items_cities_GO, IM_ARRAYSIZE(items_cities_GO));
+
+			
+		case 2: // RJ
+			ImGui::Combo(" City", &current_city, items_cities_RJ, IM_ARRAYSIZE(items_cities_RJ));
 			ImGui::SetCursorPos(ImVec2(ImGui::GetCursorPos().x + pos_power_textX * (WINDOW_WIDTH / 10.0f), ImGui::GetCursorPos().y - 1.5f * (WINDOW_HEIGHT / 10.0f)));
 			ImGui::Text("Power distribution \ncompany");
 			switch (current_city) {
-			case 0: // Goiania
-				// do something for Goiania in GO
+			case 0: // Araruama
+				// do something for Araruama in RJ
 				ImGui::SetWindowFontScale(2.0);
 				ImGui::SetCursorPos(ImVec2(ImGui::GetCursorPos().x + pos_power_textX * (WINDOW_WIDTH / 10.0f), ImGui::GetCursorPos().y + pos_power_textY * (WINDOW_HEIGHT / 10.0f)));
-				ImGui::Text("ENEL GO");
+				ImGui::Text("CERAL Araruama");
 				ImGui::SetWindowFontScale(1.0);
 				ImGui::SetCursorPos(ImVec2(ImGui::GetCursorPos().x + pos_fio_textX * (WINDOW_WIDTH / 10.0f), ImGui::GetCursorPos().y + pos_fio_textY * (WINDOW_HEIGHT / 10.0f)));
-				ImGui::Text("TUSD FIO B --> 174,57 R$/MWh");
+				ImGui::Text("TUSD FIO B --> 546,67 R$/MWh");
+				fiob = 546.67f;
 				break;
-			case 1: // Anapolis
-				// do something for Anapolis in GO
-				break;
-			case 2: // Catalao
-				// do something for Catalao in GO
+			case 1: // Cachoeiras de macacu
+				ImGui::SetWindowFontScale(2.0);
+				ImGui::SetCursorPos(ImVec2(ImGui::GetCursorPos().x + pos_power_textX * (WINDOW_WIDTH / 10.0f), ImGui::GetCursorPos().y + pos_power_textY * (WINDOW_HEIGHT / 10.0f)));
+				ImGui::Text("CERCI");
+				ImGui::SetWindowFontScale(1.0);
+				ImGui::SetCursorPos(ImVec2(ImGui::GetCursorPos().x + pos_fio_textX * (WINDOW_WIDTH / 10.0f), ImGui::GetCursorPos().y + pos_fio_textY * (WINDOW_HEIGHT / 10.0f)));
+				ImGui::Text("TUSD FIO B --> 536,42 R$/MWh");
+				fiob = 536.42f;
 				break;
 			}
 			break;
 		}
 		// declare an integer variable to store the input value
-		static float generated_energy = 10.96f;
-		static float lifespan = 20.0f;
-		static float battery_cost = 0.0f;
-		static float battery_capacity = 10.0f;
+		static float generated_energy = 10.960f;
+		static float lifespan = 20.00f;
+		static float battery_cost = 28420.00f;
+		static float battery_capacity = 10.00f;
 		static int current_year = 2023;
+		float total = 0;
 
 		ImGui::SetCursorPos(ImVec2(ImGui::GetCursorPos().x + pos_input_textX * (WINDOW_WIDTH / 10.0f), ImGui::GetCursorPos().y + pos_input_textY * (WINDOW_HEIGHT / 10.0f)));
 
@@ -190,7 +208,26 @@ int main()
 		ImGui::SetCursorPos(ImVec2(ImGui::GetCursorPos().x + pos_input_textX * (WINDOW_WIDTH / 10.0f), ImGui::GetCursorPos().y));
 		ImGui::SetNextItemWidth(100);
 		ImGui::InputInt("   Project date               [years]", &current_year, 0, 0, ImGuiInputTextFlags_CharsDecimal);
-		ImGui::Text("My fer number is: %.2f", static_cast<float>(current_year));
+		ImGui::SetCursorPos(ImVec2(ImGui::GetCursorPos().x + 5.0f * (WINDOW_WIDTH / 10.0f), ImGui::GetCursorPos().y));
+		ImGui::SetWindowFontScale(2.0f);
+		fiob = fiob / 1000;
+		//START CALCULATIONS
+		for (int i = 1; i < 21; i++) {
+			if (i <= 6)
+			{
+				total = total + (fiob * i * 0.15f * generated_energy)*365;
+			}
+			else
+			{
+				total = total + (fiob* generated_energy)*365;
+			}
+			std::cout << total << std::endl;
+		}
+
+
+		// END
+		ImGui::Text("Profit after 20 years: %.2f R$", (total-battery_cost));
+		ImGui::SetWindowFontScale(1.0f);
 		ImGui::End();
 		ImGui::PopFont();
 
