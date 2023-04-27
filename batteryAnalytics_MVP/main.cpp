@@ -33,7 +33,6 @@ int main()
 				window.close();
 
 		}
-
 		ImGui::SFML::Update(window, clock.restart());
 		//Start adding gui elements
 		ImGui::Begin("TUSD Fio B based on Location", nullptr, ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoCollapse);
@@ -155,17 +154,6 @@ int main()
 		ImGui::End();
 
 		ImGui::Begin("Generation and Battery data", nullptr, ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoCollapse);
-
-		ImFont* customFont = ImGui::GetIO().Fonts->AddFontFromFileTTF("./assets/Garet-Heavy.ttf", 15);
-
-		// Set the font for the ImGui context
-		ImGui::PushFont(customFont);
-
-		// Draw text with the custom font
-		ImGui::Text("Hello, world!");
-
-		// Restore the default font
-		ImGui::PopFont();
 
 		// declare an integer variable to store the input value
 		static int generated_energy = 0;
