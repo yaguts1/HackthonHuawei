@@ -76,7 +76,7 @@ int main()
 				ImGui::Text("ENEL SP");
 				ImGui::SetWindowFontScale(1.4);
 				ImGui::SetCursorPos(ImVec2(ImGui::GetCursorPos().x + 1.5 * (WINDOW_WIDTH / 10.0f), ImGui::GetCursorPos().y + 0.3 * (WINDOW_HEIGHT / 10.0f)));
-				ImGui::Text("TUSD FIO B -->");
+				ImGui::Text("TUSD FIO B --> 211,34 R$/MWh ");
 				break;
 			case 1: // Rio Claro
 				// do something for Rio Claro in SP
@@ -85,7 +85,7 @@ int main()
 				ImGui::Text("ELEKTRO");
 				ImGui::SetWindowFontScale(1.4);
 				ImGui::SetCursorPos(ImVec2(ImGui::GetCursorPos().x + 1.5 * (WINDOW_WIDTH / 10.0f), ImGui::GetCursorPos().y + 0.3 * (WINDOW_HEIGHT / 10.0f)));
-				ImGui::Text("TUSD FIO B -->");
+				ImGui::Text("TUSD FIO B --> 195,62 R$/MWh");
 				break;
 			case 2: // Campos de Jordao
 				// do something for Campos de Jordao in SP
@@ -94,7 +94,7 @@ int main()
 				ImGui::Text("ELEKTRO");
 				ImGui::SetWindowFontScale(1.4);
 				ImGui::SetCursorPos(ImVec2(ImGui::GetCursorPos().x + 1.5 * (WINDOW_WIDTH / 10.0f), ImGui::GetCursorPos().y + 0.3 * (WINDOW_HEIGHT / 10.0f)));
-				ImGui::Text("TUSD FIO B -->");
+				ImGui::Text("TUSD FIO B --> 195,62 R$/MWh");
 
 				break;
 			case 3: // Adamantina
@@ -104,7 +104,7 @@ int main()
 				ImGui::Text("ESS");
 				ImGui::SetWindowFontScale(1.4);
 				ImGui::SetCursorPos(ImVec2(ImGui::GetCursorPos().x + 1.5 * (WINDOW_WIDTH / 10.0f), ImGui::GetCursorPos().y + 0.3 * (WINDOW_HEIGHT / 10.0f)));
-				ImGui::Text("TUSD FIO B -->");
+				ImGui::Text("TUSD FIO B --> 104,23 R$/MWh");
 				break;
 			}
 			break;
@@ -117,10 +117,10 @@ int main()
 				// do something for Palmas in TO
 				ImGui::SetWindowFontScale(2.0);
 				ImGui::SetCursorPos(ImVec2(ImGui::GetCursorPos().x + 1.8 * (WINDOW_WIDTH / 10.0f), ImGui::GetCursorPos().y + 0.15 * (WINDOW_HEIGHT / 10.0f)));
-				ImGui::Text("ETO");
+				ImGui::Text("Energisa TO");
 				ImGui::SetWindowFontScale(1.4);
 				ImGui::SetCursorPos(ImVec2(ImGui::GetCursorPos().x + 1.5 * (WINDOW_WIDTH / 10.0f), ImGui::GetCursorPos().y + 0.3 * (WINDOW_HEIGHT / 10.0f)));
-				ImGui::Text("TUSD FIO B -->");
+				ImGui::Text("TUSD FIO B --> 361,44 R$/MWh");
 				break;
 			case 1: // Gurupi
 				// do something for Gurupi in TO
@@ -142,7 +142,7 @@ int main()
 				ImGui::Text("ENEL GO");
 				ImGui::SetWindowFontScale(1.4);
 				ImGui::SetCursorPos(ImVec2(ImGui::GetCursorPos().x + 1.5 * (WINDOW_WIDTH / 10.0f), ImGui::GetCursorPos().y + 0.3 * (WINDOW_HEIGHT / 10.0f)));
-				ImGui::Text("TUSD FIO B -->");
+				ImGui::Text("TUSD FIO B --> 174,57 R$/MWh");
 				break;
 			case 1: // Anapolis
 				// do something for Anapolis in GO
