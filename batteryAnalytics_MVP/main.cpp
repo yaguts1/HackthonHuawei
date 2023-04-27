@@ -23,6 +23,12 @@ int main()
 		// handle font loading error
 		return -1;
 	}
+	// Load font
+	ImGuiIO& io = ImGui::GetIO();
+	ImFont* fonts = io.Fonts->AddFontFromFileTTF("./assets/Garet-Book.ttf", 30.0f);
+
+	// Build font atlas
+	ImGui::SFML::UpdateFontTexture();
 	while (window.isOpen())
 	{
 		sf::Event event;
@@ -35,6 +41,7 @@ int main()
 		}
 		ImGui::SFML::Update(window, clock.restart());
 		//Start adding gui elements
+		// Use the loaded font
 		ImGui::Begin("TUSD Fio B based on Location", nullptr, ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoCollapse);
 
 
@@ -154,7 +161,7 @@ int main()
 		ImGui::End();
 
 		ImGui::Begin("Generation and Battery data", nullptr, ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoCollapse);
-
+		ImGui::PushFont(fonts);
 		// declare an integer variable to store the input value
 		static int generated_energy = 0;
 		static int lifespan = 0;
@@ -162,7 +169,7 @@ int main()
 		static int battery_capacity = 0;
 		static int current_year = 2023;
 
-		ImGui::SetWindowFontScale(1.4);
+		ImGui::SetWindowFontScale(1.0f);
 		ImGui::SetWindowPos(ImVec2(5 * (WINDOW_WIDTH / 12.0f), WINDOW_HEIGHT / 5.0f));
 		ImGui::SetWindowSize(ImVec2(2.5 * (WINDOW_WIDTH / 10.0f), 2.0 * (WINDOW_HEIGHT / 10.0f)));
 		ImGui::SetNextItemWidth(100);
@@ -185,6 +192,7 @@ int main()
 		ImGui::SetNextItemWidth(100);
 		ImGui::InputInt("   Current year       [years]", &current_year, 0, 0, ImGuiInputTextFlags_CharsDecimal);
 
+		ImGui::PopFont();
 		ImGui::End();
 
 		//Finished adding gui elements 
