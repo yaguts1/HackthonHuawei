@@ -16,7 +16,13 @@ int main()
 	// Make button corners rounded
 	float rounding = 10.0f; // Adjust to desired corner rounding
 	ImGui::PushStyleVar(ImGuiStyleVar_FrameRounding, rounding);
-
+	// Configure text
+	sf::Font font;
+	if (!font.loadFromFile("./assets/Garet-Heavy.ttf"))
+	{
+		// handle font loading error
+		return -1;
+	}
 	while (window.isOpen())
 	{
 		sf::Event event;
@@ -27,9 +33,10 @@ int main()
 				window.close();
 
 		}
+
 		ImGui::SFML::Update(window, clock.restart());
 		//Start adding gui elements
-		ImGui::Begin("Location", nullptr, ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoCollapse);
+		ImGui::Begin("TUSD Fio B based on Location", nullptr, ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoCollapse);
 
 
 		const char* items_states[] = { "SP", "TO", "GO" };
@@ -47,7 +54,7 @@ int main()
 		ImGui::Text("");
 		ImGui::SetNextItemWidth(200);
 		ImGui::SetCursorPos(ImVec2(ImGui::GetCursorPos().x + 0.1 * (WINDOW_WIDTH / 10.0f), ImGui::GetCursorPos().y));
-		ImGui::Combo("State", &current_state, items_states, IM_ARRAYSIZE(items_states));
+		ImGui::Combo(" State", &current_state, items_states, IM_ARRAYSIZE(items_states));
 
 		ImGui::SetCursorPos(ImVec2(ImGui::GetCursorPos().x + 0.55 * (WINDOW_WIDTH / 10.0f), ImGui::GetCursorPos().y + 0.20 * (WINDOW_HEIGHT / 10.0f)));
 		ImGui::Text("");
@@ -57,7 +64,7 @@ int main()
 		switch (current_state) {
 		case 0: // SP
 
-			ImGui::Combo("City", &current_city, items_cities_SP, IM_ARRAYSIZE(items_cities_SP));
+			ImGui::Combo(" City", &current_city, items_cities_SP, IM_ARRAYSIZE(items_cities_SP));
 			ImGui::SetCursorPos(ImVec2(ImGui::GetCursorPos().x + 1.8 * (WINDOW_WIDTH / 10.0f), ImGui::GetCursorPos().y - 1 * (WINDOW_HEIGHT / 10.0f)));
 			ImGui::Text("Power distribution \ncompany");
 			switch (current_city) {
@@ -101,7 +108,7 @@ int main()
 			}
 			break;
 		case 1: // TO
-			ImGui::Combo("City", &current_city, items_cities_TO, IM_ARRAYSIZE(items_cities_TO));
+			ImGui::Combo(" City", &current_city, items_cities_TO, IM_ARRAYSIZE(items_cities_TO));
 			ImGui::SetCursorPos(ImVec2(ImGui::GetCursorPos().x + 1.8 * (WINDOW_WIDTH / 10.0f), ImGui::GetCursorPos().y - 1 * (WINDOW_HEIGHT / 10.0f)));
 			ImGui::Text("Power distribution \ncompany");
 			switch (current_city) {
@@ -123,7 +130,7 @@ int main()
 			}
 			break;
 		case 2: // GO
-			ImGui::Combo("City", &current_city, items_cities_GO, IM_ARRAYSIZE(items_cities_GO));
+			ImGui::Combo(" City", &current_city, items_cities_GO, IM_ARRAYSIZE(items_cities_GO));
 			ImGui::SetCursorPos(ImVec2(ImGui::GetCursorPos().x + 1.8 * (WINDOW_WIDTH / 10.0f), ImGui::GetCursorPos().y - 1 * (WINDOW_HEIGHT / 10.0f)));
 			ImGui::Text("Power distribution \ncompany");
 			switch (current_city) {
@@ -145,6 +152,51 @@ int main()
 			}
 			break;
 		}
+		ImGui::End();
+
+		ImGui::Begin("Generation and Battery data", nullptr, ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoCollapse);
+
+		ImFont* customFont = ImGui::GetIO().Fonts->AddFontFromFileTTF("./assets/Garet-Heavy.ttf", 15);
+
+		// Set the font for the ImGui context
+		ImGui::PushFont(customFont);
+
+		// Draw text with the custom font
+		ImGui::Text("Hello, world!");
+
+		// Restore the default font
+		ImGui::PopFont();
+
+		// declare an integer variable to store the input value
+		static int generated_energy = 0;
+		static int lifespan = 0;
+		static int battery_cost = 0;
+		static int battery_capacity = 0;
+		static int current_year = 2023;
+
+		ImGui::SetWindowFontScale(1.4);
+		ImGui::SetWindowPos(ImVec2(5 * (WINDOW_WIDTH / 12.0f), WINDOW_HEIGHT / 5.0f));
+		ImGui::SetWindowSize(ImVec2(2.5 * (WINDOW_WIDTH / 10.0f), 2.0 * (WINDOW_HEIGHT / 10.0f)));
+		ImGui::SetNextItemWidth(100);
+		ImGui::InputInt("   Generated Energy   [KWh]", &generated_energy, 0, 0, ImGuiInputTextFlags_CharsDecimal);
+		ImGui::SetWindowPos(ImVec2(5 * (WINDOW_WIDTH / 12.0f), WINDOW_HEIGHT / 5.0f));
+		ImGui::SetWindowSize(ImVec2(2.5 * (WINDOW_WIDTH / 10.0f), 2.0 * (WINDOW_HEIGHT / 10.0f)));
+		ImGui::SetNextItemWidth(100);
+		ImGui::InputInt("   Battery Lifespan   [years]", &lifespan, 0, 0, ImGuiInputTextFlags_CharsDecimal);
+		ImGui::SetWindowPos(ImVec2(5 * (WINDOW_WIDTH / 12.0f), WINDOW_HEIGHT / 5.0f));
+		ImGui::SetWindowSize(ImVec2(2.5 * (WINDOW_WIDTH / 10.0f), 2.0 * (WINDOW_HEIGHT / 10.0f)));
+		ImGui::SetNextItemWidth(100);
+		ImGui::InputInt("   Battery Cost       [R$]", &battery_cost, 0, 0, ImGuiInputTextFlags_CharsDecimal);
+		ImGui::SetNextItemWidth(100);
+		ImGui::SetWindowPos(ImVec2(5 * (WINDOW_WIDTH / 12.0f), WINDOW_HEIGHT / 5.0f));
+		ImGui::SetWindowSize(ImVec2(2.5 * (WINDOW_WIDTH / 10.0f), 2.0 * (WINDOW_HEIGHT / 10.0f)));
+		ImGui::SetNextItemWidth(100);
+		ImGui::InputInt("   Battery Capacity   [KW]", &battery_capacity, 0, 0, ImGuiInputTextFlags_CharsDecimal);
+		ImGui::SetWindowPos(ImVec2(5 * (WINDOW_WIDTH / 12.0f), WINDOW_HEIGHT / 5.0f));
+		ImGui::SetWindowSize(ImVec2(2.5 * (WINDOW_WIDTH / 10.0f), 2.0 * (WINDOW_HEIGHT / 10.0f)));
+		ImGui::SetNextItemWidth(100);
+		ImGui::InputInt("   Current year       [years]", &current_year, 0, 0, ImGuiInputTextFlags_CharsDecimal);
+
 		ImGui::End();
 
 		//Finished adding gui elements 
