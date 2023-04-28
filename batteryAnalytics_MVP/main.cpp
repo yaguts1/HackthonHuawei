@@ -221,7 +221,7 @@ int main()
 			{
 				total = total + (fiob* generated_energy)*365;
 			}
-			std::cout << total << std::endl;
+			//std::cout << total << std::endl;
 		}
 
 
